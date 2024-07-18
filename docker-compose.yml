@@ -1,0 +1,26 @@
+version: "3"
+services:
+  postgres:
+    image: postgres:15.1-alpine
+    container_name: postgres
+    environment:
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_DB: ${DATABASE_NAME}
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./docker/postgres:/docker-entrypoint-initdb.d
+  server:
+    build:
+      dockerfile: Dockerfile
+    image: server
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    networks:
+      - docker-network
+networks:
+  docker-network:
+    driver: bridge
