@@ -3,6 +3,7 @@ import { ScraperRepository } from './scraper.repository'
 import { ScraperEntity } from './scraper.entity'
 import { CreateScraperDTO } from './dto/createScraper.dto'
 import puppeteer from 'puppeteer'
+import { env } from '../config/env.config'
 
 @Injectable()
 export class ScraperService {
@@ -56,7 +57,7 @@ export class ScraperService {
     const browser = await puppeteer.launch({
       ignoreDefaultArgs: ['--disable-extensions'],
       args: ['--no-sandbox'],
-      executablePath: '/usr/bin/chromium-browser'
+      executablePath: env.PUPPETEER_EXECUTABLE_PATH
     });
     const page = await browser.newPage();
 

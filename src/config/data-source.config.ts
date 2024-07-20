@@ -3,7 +3,7 @@ import { env } from './env.config';
 
 export const dataSourceOptions: DataSourceOptions = {
   type: env.DATABASE.CONNECT || 'postgres',
-  host: 'host.docker.internal',
+  host: env.DATABASE.HOST,
   port: env.DATABASE.PORT || 5432,
   username: env.DATABASE.USER || 'dev',
   password: env.DATABASE.PASSWORD || '12345',

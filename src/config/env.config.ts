@@ -1,5 +1,5 @@
 import * as dotenv from 'dotenv'
-dotenv.config()
+dotenv.config({ path: `../${process.env.NODE_ENV}.env` })
 
 export const env = {
   APP_PORT: process.env.APP_PORT,
@@ -15,5 +15,6 @@ export const env = {
   SECRET_KEY: 'secret123',
   CORS_CONFIG: { credentials: true,
     origin: true,
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS', }
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS', },
+  PUPPETEER_EXECUTABLE_PATH: process.env.PUPPETEER_EXECUTABLE_PATH || ''
 };
